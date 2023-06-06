@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Calendar
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,43 @@
 <ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Calendar</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="container">
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Todays Quote :- </ion-card-title>
+        <ion-card-subtitle>Time you enjoy wasting is not wasted time.</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-calendar [(ngModel)]="date" (change)="onChange($event)" [type]="type" [format]="'YYYY-MM-DD'">
+        </ion-calendar>
+      </ion-card-content>
+    </ion-card>
+
+    <input type="text" #text placeholder="Enter your reminder">
+    <div class="btn" (click)="setTodo(text.value)">Set Reminder</div>
+    <div class="todos">
+      <div class="title" *ngIf="list.length === 0">
+        <img src="../../assets/icon/Okay_Vector.jpg" alt="">
+        <p>
+          No Reminder! You are all set!
+        </p>
+      </div>
+      <div class="item" *ngFor="let item of list">
+        <div class="sub">
+          {{item.date}} {{item.month}}
+        </div>
+        <div class="text">
+          {{item.text}}
+        </div>
+      </div>
+    </div>
+  </div>
+
 </ion-content>
